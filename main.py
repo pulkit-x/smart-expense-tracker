@@ -1,24 +1,59 @@
+import datetime
+import json
+
 expenses = []
+
+# Read existing expenses from JSON file
+
+
+def load_expenses():
+    try:
+        with open("expenses.json", mode="r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
+
+# Save expenses to JSON file
+
+
+def save_expenses():
+    with open("expenses.json", mode="w") as file:
+        json.dump(expenses, file, indent=4)
+
+# Add expenses
 
 
 def add_expense(amount, category):
-    expense = {"amount": amount, "category": category}
+    current_time = datetime.datetime.now()
+    expense = {
+        "amount": amount,
+        "category": category,
+        "date": current_time.strftime("%Y-%m-%d %H:%M:%S")
+    }
     expenses.append(expense)
-    print(f'Added expense: {amount} in category: {category}')
+    save_expenses()
+    print(
+        f"Added expense: {amount} in category: {category} on {expense['date']}")
 
 
 def show_expenses():
-    print('\nYour Expenses:')
-    for expense in expenses:
-        print(f'{expense["category"]}: {expense["amount"]}')
+    if expenses:
+        print("\nYour Expenses:")
+        for expense in expenses:
+            print(
+                f'{expense["category"]}: {expense["amount"]} on {expense['date']}')
+    else:
+        print("No expenses to show.")
 
 
 def main():
+    global expenses
+    expenses = load_expenses()
     while True:
-        print("1. Add Expense")
+        print("\n1. Add Expense")
         print("2. Show Expenses")
         print("3. Exit")
-        choice = int(input("Enter the category: "))
+        choice = int(input("Choose an option: "))
 
         if choice == 1:
             amount = float(input("Enter the amount: "))

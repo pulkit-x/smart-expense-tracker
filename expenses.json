@@ -1,0 +1,22 @@
+[
+    {
+        "amount": 220.0,
+        "category": "Transportation",
+        "date": "2025-04-19 14:54:44"
+    },
+    {
+        "amount": 9200.0,
+        "category": "Entertainment",
+        "date": "2025-04-19 14:55:12"
+    },
+    {
+        "amount": 3100.0,
+        "category": "Groceries",
+        "date": "2025-04-19 14:55:34"
+    },
+    {
+        "amount": 178.0,
+        "category": "Transportation",
+        "date": "2025-04-19 14:55:48"
+    }
+]
