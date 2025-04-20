@@ -26,6 +26,21 @@ def save_expenses():
     with open("expenses.json", mode="w") as file:
         json.dump(expenses, file, indent=4)
 
+
+# Saving deleted expenses in a file
+
+def log_deleted_expenses(deleted_items):
+    try:
+        with open("deleted_expenses.json", mode="r") as file:
+            deleted_log = json.load(file)
+    except FileNotFoundError:
+        deleted_log = []
+
+    deleted_log.extend(deleted_items)
+
+    with open("deleted_expenses.json", mode="w") as file:
+        json.dump(deleted_log, file, indent=4)
+
 # Add expenses
 
 
@@ -86,6 +101,8 @@ def delete_expense():
 
             for idx in indexes:
                 deleted_items.append(expenses.pop(idx))
+
+            log_deleted_expenses(deleted_items)
 
             save_expenses()
 
