@@ -1,17 +1,9 @@
 import datetime
 import json
+import difflib
 
-expenses = []
-
-monthly_budget = {
-    "Transportation": 10000,
-    "Groceries": 30000,
-    "Entertainment": 5000
-}
 
 # Read existing expenses from JSON file
-
-
 def load_expenses():
     try:
         with open("expenses.json", mode="r") as file:
@@ -19,32 +11,90 @@ def load_expenses():
     except FileNotFoundError:
         return []
 
+
 # Save expenses to JSON file
-
-
 def save_expenses():
     with open("expenses.json", mode="w") as file:
         json.dump(expenses, file, indent=4)
 
 
-# Saving deleted expenses in a file
-
-def log_deleted_expenses(deleted_items):
+# Reading the categories of expenses
+def load_category_budgets():
     try:
-        with open("deleted_expenses.json", mode="r") as file:
-            deleted_log = json.load(file)
+        with open("category_budgets.json", mode="r") as file:
+            return json.load(file)
     except FileNotFoundError:
-        deleted_log = []
+        return {
+            "Transportation": 10000,
+            "Groceries": 30000,
+            "Entertainment": 5000
+        }
 
-    deleted_log.extend(deleted_items)
 
-    with open("deleted_expenses.json", mode="w") as file:
-        json.dump(deleted_log, file, indent=4)
+# Saving category budgets
+def save_category_budgets():
+    with open("category_budgets.json", mode="w") as file:
+        json.dump(monthly_budget, file, indent=4)
+
 
 # Add expenses
-
-
 def add_expense(amount, category):
+
+    # Getting all known categories
+    known_categories = list(monthly_budget.keys())
+    known_categories += [expense["category"] for expense in expenses]
+    known_categories = list(set(known_categories))
+
+    # Finding a close match
+    close_matches = difflib.get_close_matches(
+        category, known_categories, n=1, cutoff=0.7)
+
+    if close_matches:
+        suggested = close_matches[0]
+        confirm = input(f'Did you mean "{suggested}? (Y/N): ').strip().lower()
+        if confirm == "y":
+            category = suggested
+        else:
+            # Confirming if it's new category
+            confirm_new = input(
+                f'"{category}" is not recognised. Do you want to add it as a new category? (Y/N): ').strip().lower()
+            if confirm_new == 'y':
+                while True:
+                    try:
+                        budget_amount = float(
+                            input(f'Set a monthly budget for "{category}": '))
+                        if budget_amount <= 0:
+                            print(
+                                "Budget must be a positive number. Please try again.")
+                            continue
+                        monthly_budget[category] = budget_amount
+                        save_category_budgets()
+                        break
+                    except ValueError:
+                        print('Invalid input. Please enter a numeric value.')
+            else:
+                print("Expense not added.")
+                return
+    else:
+        confirm_new = input(
+            f'"{category} is not recognised. Do you want to add it as a new category? (Y/N): ').strip().lower()
+        if confirm_new == 'y':
+            while True:
+                try:
+                    budget_amount = float(
+                        input(f'Set a monthly budget for "{category}": '))
+                    if budget_amount <= 0:
+                        print("Budget must be a positive number. please try again")
+                        continue
+                    monthly_budget[category] = budget_amount
+                    save_category_budgets()
+                    break
+                except ValueError:
+                    print('Invalid input. Please enter a numeric budget value.')
+        else:
+            print("Expense not added.")
+            return
+
     current_time = datetime.datetime.now()
     expense = {
         "amount": amount,
@@ -69,7 +119,6 @@ def add_expense(amount, category):
 
 
 # Delete Expenses
-
 def delete_expense():
     if not expenses:
         print("No expenses to delete.")
@@ -116,9 +165,21 @@ def delete_expense():
             print('Input invalid. Please enter numbers separated by commas.')
 
 
+# Saving deleted expenses in a file
+def log_deleted_expenses(deleted_items):
+    try:
+        with open("deleted_expenses.json", mode="r") as file:
+            deleted_log = json.load(file)
+    except FileNotFoundError:
+        deleted_log = []
+
+    deleted_log.extend(deleted_items)
+
+    with open("deleted_expenses.json", mode="w") as file:
+        json.dump(deleted_log, file, indent=4)
+
+
 # Helper function to calculate total spent this month in a category
-
-
 def get_monthly_total(category):
     now = datetime.datetime.now()
     total = 0
@@ -131,8 +192,6 @@ def get_monthly_total(category):
 
 
 # Display expenses
-
-
 def show_expenses():
     if expenses:
         print("\nYour Expenses:")
@@ -165,6 +224,10 @@ def main():
             break
         else:
             print("Invalid choice, please try again.")
+
+
+expenses = []
+monthly_budget = load_category_budgets()
 
 
 if __name__ == "__main__":
