@@ -60,33 +60,43 @@ def delete_expense():
         print("No expenses to delete.")
         return
 
-    print("\nYour expenses:")
-    for i, expense in enumerate(expenses):
-        print(
-            f"{i+1}. {expense['category']}: {expense['amount']} on {expense['date']}.")
-
-    try:
+    while True:
+        print("\nYour expenses:")
+        for i, expense in enumerate(expenses):
+            print(
+                f"{i+1}. {expense['category']}: {expense['amount']} on {expense['date']}.")
         input_str = input(
-            "Enter the numbers of the expenses to delete (comma-separated): ")
-        indexes = [int(i.strip()) - 1 for i in input_str.split(",")]
-        # Remove in reverse order to prevent index shift
-        indexes = sorted(set(indexes), reverse=True)
-        deleted_items = []
+            "Enter the numbers of the expenses to delete (comma-separated), or press Enter to cancel: ")
+        if not input_str:
+            print("No expenses deleted.")
+            break
 
-        for idx in indexes:
-            if 0 <= idx < len(expenses):
+        try:
+            indexes = [int(i.strip()) - 1 for i in input_str.split(",")]
+
+            # Checking if indexes are valid
+            if any(idx < 0 or idx >= len(expenses) for idx in indexes):
+                print(
+                    "One or more invalid numbers entered. No expenses were deleted. Please try again.")
+                continue
+
+            # Remove in reverse order to prevent index shift
+            indexes = sorted(set(indexes), reverse=True)
+            deleted_items = []
+
+            for idx in indexes:
                 deleted_items.append(expenses.pop(idx))
 
-        save_expenses()
-        if deleted_items:
+            save_expenses()
+
             print(f"Deleted the following expenses:")
             for item in deleted_items:
                 print(
                     f"{item["category"]} - {item["amount"]} on {item["date"]}")
-        else:
-            print("No valid numbers selected.")
-    except ValueError:
-        print('Input invalid. Please enter numbers separated by commas.')
+            break
+
+        except ValueError:
+            print('Input invalid. Please enter numbers separated by commas.')
 
 
 # Helper function to calculate total spent this month in a category
