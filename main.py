@@ -202,6 +202,108 @@ def show_expenses():
         print("No expenses to show.")
 
 
+# Display monthly summary
+def show_monthly_summary():
+    print("\n📊 Monthly Budget Summary: ")
+    print("*"*50)
+    now = datetime.datetime.now()
+    categories = set([expense["category"]
+                     for expense in expenses] + list(monthly_budget.keys()))
+
+    for category in sorted(categories):
+        spent = get_monthly_total(category)
+        budget = monthly_budget.get(category, 0)
+        remaining = budget - spent
+
+        if budget == 0:
+            status = "❓ No budget set"
+        elif spent > budget:
+            status = "‼️ Over budget"
+        elif spent > 0.9 * budget:
+            status = "⚠️ Near limit"
+        else:
+            status = "✅ Under budget"
+
+        print(f"Category  :  {category}")
+        print(f"Budget    :  ¥{budget}")
+        print(f"Spent     :  ¥{spent}")
+        print(f"Remaining :  ¥{remaining}")
+        print(f"Status    :  {status}")
+        print("*"*50)
+
+
+# Filter while viewing
+def filter_expenses_by_date():
+    while True:
+        print("\n📅 Filter Expenses by Date")
+        print("1. This Week")
+        print("2. This month")
+        print("3. Custom Date Range")
+        print('4. Cancel')
+
+        choice = input("Choose an option: ").strip()
+
+        now = datetime.datetime.now()
+        filtered = []
+        lable = ""
+
+        if choice == "1":
+            start_of_week = now - datetime.timedelta(days=now.weekday())
+            filtered = [e for e in expenses if datetime.datetime.strptime(
+                e["date"], "%Y-%m-%d %H:%M:%S") >= start_of_week]
+            label = "This Week"
+            break
+
+        elif choice == "2":
+            start_of_month = now.replace(day=1)
+            filtered = [e for e in expenses if datetime.datetime.strptime(
+                e["date"], "%Y-%m-%d %H:%M:%S") >= start_of_month]
+            label = "This Month"
+            break
+
+        elif choice == "3":
+            while True:
+                try:
+                    start_str = input(
+                        "Enter start date (YYYY-MM-DD): ").strip()
+                    end_str = input("Enter end date (YYYY-MM-DD): ").strip()
+
+                    start_date = datetime.datetime.strptime(
+                        start_str, "%Y-%m-%d")
+                    end_date = datetime.datetime.strptime(
+                        end_str, "%Y-%m-%d") + datetime.timedelta(days=1)
+                    # end date also included
+
+                    if end_date < start_date:
+                        print(
+                            "❗️End date cannot be earlier than start date. Please try again.")
+                        continue
+
+                    filtered = [
+                        e for e in expenses
+                        if start_date <= datetime.datetime.strptime(e["date"], "%Y-%m-%d %H:%M:%S") < end_date
+                    ]
+                    label = f"From {start_date.date()} to {(end_date - datetime.timedelta(days=1)).date()}"
+                    break
+                except ValueError:
+                    print('Invalid date format. Please use YYYY-MM-DD format.')
+                    continue
+            break
+
+        elif choice == "4":
+            return
+        else:
+            print('Invalid choice. Please enter again.')
+            continue
+
+    print(f"\n📂 Expenses - {label}")
+    if not filtered:
+        print('No expenses found in this range.')
+    else:
+        for e in filtered:
+            print(f'{e["category"]}: ¥{e["amount"]} on {e["date"]}')
+
+
 def main():
     global expenses
     expenses = load_expenses()
@@ -209,18 +311,28 @@ def main():
         print("\n1. Add an Expense")
         print("2. Show Expenses")
         print("3. Delete an Expense")
-        print("4. Exit")
-        choice = int(input("Choose an option: "))
+        print("4. Monthly Summary Report")
+        print("5. Filter Expenses by Date")
+        print("6. Exit")
+        try:
+            choice = input("Choose an option: ")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
 
-        if choice == 1:
+        if choice == "1":
             amount = float(input("Enter the amount: "))
             category = input("Enter the category: ")
             add_expense(amount, category)
-        elif choice == 2:
+        elif choice == "2":
             show_expenses()
-        elif choice == 3:
+        elif choice == "3":
             delete_expense()
-        elif choice == 4:
+        elif choice == "4":
+            show_monthly_summary()
+        elif choice == "5":
+            filter_expenses_by_date()
+        elif choice == "6":
             break
         else:
             print("Invalid choice, please try again.")
