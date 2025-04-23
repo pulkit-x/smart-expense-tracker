@@ -7,7 +7,7 @@
     {
         "amount": 9200.0,
         "category": "Entertainment",
-        "date": "2025-04-19 14:55:12"
+        "date": "2025-03-26 13:00:00"
     },
     {
         "amount": 3100.0,
@@ -23,5 +23,15 @@
         "amount": 4000.0,
         "category": "Shopping",
         "date": "2025-04-20 11:00:39"
+    },
+    {
+        "amount": 178.0,
+        "category": "Transportation",
+        "date": "2025-04-21 14:39:36"
+    },
+    {
+        "amount": 2800.0,
+        "category": "Groceries",
+        "date": "2025-04-21 14:40:15"
     }
 ]

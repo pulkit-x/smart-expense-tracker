@@ -3,5 +3,10 @@
         "amount": 520.0,
         "category": "Transportation",
         "date": "2025-04-20 09:56:21"
+    },
+    {
+        "amount": 560.0,
+        "category": "Food",
+        "date": "2025-04-21 17:14:48"
     }
 ]
