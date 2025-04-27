@@ -2,5 +2,6 @@
     "Transportation": 10000,
     "Groceries": 30000,
     "Entertainment": 5000,
-    "Shopping": 10000.0
+    "Shopping": 10000.0,
+    "Food": 15000.0
 }

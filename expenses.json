@@ -33,5 +33,95 @@
         "amount": 2800.0,
         "category": "Groceries",
         "date": "2025-04-21 14:40:15"
+    },
+    {
+        "amount": 1050.0,
+        "category": "Food",
+        "date": "2025-04-23 14:26:29"
+    },
+    {
+        "amount": 356.0,
+        "category": "Transportation",
+        "date": "2025-04-23 14:27:19"
+    },
+    {
+        "date": "2025-04-19 14:54:44",
+        "amount": 220.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-03-26 13:00:00",
+        "amount": 9200.0,
+        "category": "Entertainment"
+    },
+    {
+        "date": "2025-04-19 14:55:34",
+        "amount": 3100.0,
+        "category": "Groceries"
+    },
+    {
+        "date": "2025-04-21 14:39:36",
+        "amount": 178.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-21 14:40:15",
+        "amount": 2800.0,
+        "category": "Groceries"
+    },
+    {
+        "date": "2025-04-23 14:26:29",
+        "amount": 1050.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-23 14:27:19",
+        "amount": 356.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-23 15:50:35",
+        "amount": 245.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-24 13:05:14",
+        "amount": 1050.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-24 12:58:44",
+        "amount": 356.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-25 12:53:44",
+        "amount": 356.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-25 13:04:23",
+        "amount": 945.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-25 18:15:43",
+        "amount": 168.0,
+        "category": "Entertainment"
+    },
+    {
+        "date": "2025-04-25 19:05:40",
+        "amount": 975.0,
+        "category": "Food"
+    },
+    {
+        "amount": 10631.0,
+        "category": "Bills",
+        "date": "2025-04-26 12:25:52"
+    },
+    {
+        "amount": 2300.0,
+        "category": "Food",
+        "date": "2025-04-26 12:28:17"
     }
 ]

@@ -8,6 +8,7 @@ import seaborn as sns
 import pandas as pd
 import calendar
 import numpy as np
+import csv
 
 
 # Read existing expenses from JSON file
@@ -573,6 +574,41 @@ def analytics_menu():
             print("Invalid option. Please try again.")
 
 
+# Export to CSV
+def export_expenses_to_csv(filename="expenses_export.csv"):
+    if not expenses:
+        print("No expenses to export.")
+        return
+
+    with open(filename, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(["date", "amount", "category"])  # Header row
+        for expense in expenses:
+            writer.writerow(
+                [expense["date"], expense["amount"], expense["category"]])
+
+    print(f"Expenses exported to {filename}")
+
+
+# Import from CSV
+def import_expenses_from_csv(filename):
+    try:
+        with open(filename, mode='r', newline='', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            imported_expenses = []
+            for row in reader:
+                imported_expenses.append({
+                    'date': row['date'],
+                    'amount': float(row['amount']),
+                    'category': row['category']
+                })
+            print(f"Expenses imported from {filename}")
+            return imported_expenses
+    except FileNotFoundError:
+        print(f"File '{filename}' not found.")
+        return []
+
+
 # Category Suggestion
 def validate_or_suggest_category(input_category):
     known_categories = list(monthly_budget.keys()) + \
@@ -632,8 +668,9 @@ def main():
         print("3. Filter Expenses by Date")
         print("4. Monthly Summary Report")
         print("5. Analytics and Visualisation")
-        print("6. Edit an Expense")
-        print("7. Delete an Expense")
+        print("6. Export / Import (CSV)")
+        print("7. Edit an Expense")
+        print("8. Delete an Expense")
         print("0. Exit")
         try:
             choice = input("Choose an option: ")
@@ -653,9 +690,29 @@ def main():
             show_monthly_summary()
         elif choice == "5":
             analytics_menu()
+
         elif choice == "6":
-            edit_expense()
+            print("1. Export")
+            print("2. Import")
+            try:
+                choice = input("Choose an option: ")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+                continue
+            if choice == "1":
+                filename = input(
+                    "Enter filename to export (default: expenses_export.csv): ").strip()
+                export_expenses_to_csv(filename or "expenses_export.csv")
+            elif choice == "2":
+                filename = input(
+                    "Enter filename to import (default: expenses_import.csv): ").strip()
+                expenses += import_expenses_from_csv(
+                    filename or "expenses_export.csv")
+                save_expenses()
+
         elif choice == "7":
+            edit_expense()
+        elif choice == "8":
             delete_expense()
         elif choice == "0":
             break

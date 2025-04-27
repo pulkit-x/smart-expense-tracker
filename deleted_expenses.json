@@ -8,5 +8,15 @@
         "amount": 560.0,
         "category": "Food",
         "date": "2025-04-21 17:14:48"
+    },
+    {
+        "date": "2025-04-20 11:00:39",
+        "amount": 4000.0,
+        "category": "Shopping"
+    },
+    {
+        "date": "2025-04-20 10:59:52",
+        "amount": 5900.0,
+        "category": "Shopping"
     }
 ]
