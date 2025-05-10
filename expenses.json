@@ -123,5 +123,230 @@
         "amount": 2300.0,
         "category": "Food",
         "date": "2025-04-26 12:28:17"
+    },
+    {
+        "date": "2025-04-19 14:54:44",
+        "amount": 220.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-03-26 13:00:00",
+        "amount": 9200.0,
+        "category": "Entertainment"
+    },
+    {
+        "date": "2025-04-19 14:55:34",
+        "amount": 3100.0,
+        "category": "Groceries"
+    },
+    {
+        "date": "2025-04-20 10:59:52",
+        "amount": 5900.0,
+        "category": "Shopping"
+    },
+    {
+        "date": "2025-04-20 11:00:39",
+        "amount": 4000.0,
+        "category": "Shopping"
+    },
+    {
+        "date": "2025-04-21 14:39:36",
+        "amount": 178.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-21 14:40:15",
+        "amount": 2800.0,
+        "category": "Groceries"
+    },
+    {
+        "date": "2025-04-23 14:26:29",
+        "amount": 1050.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-23 14:27:19",
+        "amount": 356.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-19 14:54:44",
+        "amount": 220.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-03-26 13:00:00",
+        "amount": 9200.0,
+        "category": "Entertainment"
+    },
+    {
+        "date": "2025-04-19 14:55:34",
+        "amount": 3100.0,
+        "category": "Groceries"
+    },
+    {
+        "date": "2025-04-21 14:39:36",
+        "amount": 178.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-21 14:40:15",
+        "amount": 2800.0,
+        "category": "Groceries"
+    },
+    {
+        "date": "2025-04-23 14:26:29",
+        "amount": 1050.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-23 14:27:19",
+        "amount": 356.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-23 15:50:35",
+        "amount": 245.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-24 13:05:14",
+        "amount": 1050.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-24 12:58:44",
+        "amount": 356.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-25 12:53:44",
+        "amount": 356.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-25 13:04:23",
+        "amount": 945.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-25 18:15:43",
+        "amount": 168.0,
+        "category": "Entertainment"
+    },
+    {
+        "date": "2025-04-25 19:05:40",
+        "amount": 975.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-26 12:25:52",
+        "amount": 10631.0,
+        "category": "Bills"
+    },
+    {
+        "date": "2025-04-26 12:28:17",
+        "amount": 2300.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-27 12:04:24",
+        "amount": 890.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-27 18:35:25",
+        "amount": 1200.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-28 08:45:03",
+        "amount": 178.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-28 12:45:45",
+        "amount": 178.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-28 12:53:27",
+        "amount": 890.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-28 18:36:35",
+        "amount": 1635.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-04-29 12:35:13",
+        "amount": 256.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-04-30 12:34:42",
+        "amount": 256.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-05-01 12:35:13",
+        "amount": 256.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-05-03 12:45:33",
+        "amount": 450.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-05-03 13:05:43",
+        "amount": 1128.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-05-04 12:12:43",
+        "amount": 438.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-05-06 11:34:45",
+        "amount": 3456.0,
+        "category": "Groceries"
+    },
+    {
+        "date": "2025-05-07 12:42:55",
+        "amount": 256.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-05-07 13:04:55",
+        "amount": 876.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-05-08 12:40:34",
+        "amount": 256.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-05-08 12:54:23",
+        "amount": 567.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-05-09 12:45:38",
+        "amount": 256.0,
+        "category": "Transportation"
+    },
+    {
+        "date": "2025-05-09 12:58:24",
+        "amount": 1256.0,
+        "category": "Food"
+    },
+    {
+        "date": "2025-05-09 18:37:19",
+        "amount": 1890.0,
+        "category": "Food"
     }
 ]
